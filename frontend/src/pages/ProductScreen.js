@@ -30,7 +30,7 @@ function ProductScreen(history) {
 
   const navigate = useNavigate();
   const addToCartHandler = () => {
-    navigate(`/cart/${id}?qty=${qty}`)
+    navigate(`/cart/${id}?qty=${qty}`);
   };
 
   return (
@@ -59,7 +59,8 @@ function ProductScreen(history) {
                 <Rating
                   value={product.rating}
                   text={`${product.numReviews} reviews`}
-                  color={"#f8e825"}/>
+                  color={"#f8e825"}
+                />
               </ListGroupItem>
 
               <ListGroupItem>Price: ${product.price}</ListGroupItem>
@@ -93,13 +94,16 @@ function ProductScreen(history) {
                   <ListGroupItem>
                     <Row>
                       <Col>Qty:</Col>
-                      <Col xs='auto' className="my-1">
+                      <Col xs="auto" className="my-1">
                         <Form.Control
                           as="select"
                           value={qty}
-                          onChange={(e) => setQty(e.target.value)}>
+                          onChange={(e) => setQty(e.target.value)}
+                        >
                           {[...Array(product.countInStock).keys()].map((x) => (
-                            <option key={x + 1} value={x + 1}>{x + 1}</option>
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
                           ))}
                         </Form.Control>
                       </Col>
@@ -112,7 +116,8 @@ function ProductScreen(history) {
                     onClick={addToCartHandler}
                     className="btn btn-block"
                     type="button"
-                    disabled={product.countInStock === 0}>
+                    disabled={product.countInStock === 0}
+                  >
                     Add to Cart
                   </Button>
                 </ListGroupItem>

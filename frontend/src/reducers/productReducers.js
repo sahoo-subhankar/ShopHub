@@ -8,7 +8,8 @@ import {
   PRODUCT_DETAILS_FAIL,
 } from "../constants/productConstants";
 
-export const productListReducers = (state = { products: [] }, action) => { //Reducers always take the current state and action as parameters then return a new state without mutating the current state.
+export const productListReducers = (state = { products: [] }, action) => {
+  //Reducers always take the current state and action as parameters then return a new state without mutating the current state.
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
       return { loading: true, products: [] };
@@ -22,7 +23,7 @@ export const productListReducers = (state = { products: [] }, action) => { //Red
   }
 };
 
-export const productDetailsReducers = (state = { product: {reviews: []} }, action) => {
+export const productDetailsReducers = (state = { product: { reviews: [] } }, action) => {
   switch (action.type) {
     case PRODUCT_DETAILS_REQUEST:
       return { loading: true, ...state };

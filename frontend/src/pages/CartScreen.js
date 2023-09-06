@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useParams, useLocation , useNavigate} from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Row,
@@ -53,7 +53,7 @@ function CartScreen({ history }) {
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
-                  <Col md={3} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                  <Col md={3} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
 
@@ -90,7 +90,7 @@ function CartScreen({ history }) {
       </Col>
 
       <Col md={4}>
-        <Card style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <Card style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>

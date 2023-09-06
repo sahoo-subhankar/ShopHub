@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import Loader from '../components/Loader';
-import ErrorMessage from '../components/ErrorMessage'
+import ErrorMessage from '../components/ErrorMessage';
 import { listproducts } from "../actions/productActions";
 
 
@@ -16,11 +16,15 @@ const HomeScreen = () => {
     dispatch(listproducts());
   }, [dispatch]);
 
+  const centeredH1Styles = {
+    textAlign: 'center',
+  };
+
   return (
     <div>
-      <h1>Latest Products</h1>
+      <h1 style={centeredH1Styles}>Latest Products</h1>
       {loading ? (
-        <Loader/>
+        <Loader />
       ) : error ? (
         <ErrorMessage varient='danger'>{error}</ErrorMessage>
       ) : (
