@@ -16,7 +16,7 @@ import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
 import { listproductDetails } from "../actions/productActions";
 
-function ProductScreen(history) {
+function ProductScreen({ history }) {
   const [qty, setQty] = useState(1);
 
   const { id } = useParams();
@@ -39,11 +39,7 @@ function ProductScreen(history) {
         Go Back
       </Link>
 
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <ErrorMessage varient="danger">{error}</ErrorMessage>
-      ) : (
+      {loading ? (<Loader />) : error ? (<ErrorMessage varient="danger">{error}</ErrorMessage>) : (
         <Row>
           <Col md={6}>
             <Image src={product.image} alt={product.name} fluid />
@@ -64,7 +60,6 @@ function ProductScreen(history) {
               </ListGroupItem>
 
               <ListGroupItem>Price: ${product.price}</ListGroupItem>
-
               <ListGroupItem>Description: {product.description}</ListGroupItem>
             </ListGroup>
           </Col>
@@ -95,17 +90,15 @@ function ProductScreen(history) {
                     <Row>
                       <Col>Qty:</Col>
                       <Col xs="auto" className="my-1">
-                        <Form.Control
-                          as="select"
+                        <Form.Select
                           value={qty}
-                          onChange={(e) => setQty(e.target.value)}
-                        >
+                          onChange={(e) => setQty(e.target.value)}>
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
                               {x + 1}
                             </option>
                           ))}
-                        </Form.Control>
+                        </Form.Select>
                       </Col>
                     </Row>
                   </ListGroupItem>
@@ -116,8 +109,7 @@ function ProductScreen(history) {
                     onClick={addToCartHandler}
                     className="btn btn-block"
                     type="button"
-                    disabled={product.countInStock === 0}
-                  >
+                    disabled={product.countInStock === 0}>
                     Add to Cart
                   </Button>
                 </ListGroupItem>

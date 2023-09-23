@@ -9,7 +9,6 @@ import {
 } from "../constants/productConstants";
 
 export const productListReducers = (state = { products: [] }, action) => {
-  //Reducers always take the current state and action as parameters then return a new state without mutating the current state.
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
       return { loading: true, products: [] };
