@@ -35,7 +35,7 @@ function ProfileScreen({ history }) {
     if (!userInfo) {
       navigate("/login");
     } else {
-      if (!user || !user.name || success) {
+      if (!user || !user.name || success || userInfo._id !== user._id) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
         dispatch(ListOrdersByMe());
@@ -121,13 +121,13 @@ function ProfileScreen({ history }) {
         </Form>
       </Col>
 
-      <Col md={9}>
+      <Col md={9} style={centeredH1Styles}>
         <h2 style={centeredH1Styles}>My Orders</h2>
         {loadingOrders ? (
-          <Loader/>
-        ): errorOrders ? (
+          <Loader />
+        ) : errorOrders ? (
           <ErrorMessage varient='danger'>{errorOrders}</ErrorMessage>
-        ) : (
+        ) : (orders.length === 0) ? <ErrorMessage varient="danger">You have not ordered anything</ErrorMessage> :
           <Table striped responsive className="table-sm" style={centeredH1Styles}>
             <thead>
               <tr>
@@ -144,13 +144,13 @@ function ProfileScreen({ history }) {
               {orders.map(order => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.createdAt.substring(0,10)}</td>
+                  <td>{order.createdAt.substring(0, 10)}</td>
                   <td>${order.totalPrice}</td>
-                  <td>{order.isPaid ? order.paidAt.substring(0,10) : (
-                    <i className="fas fa-times" style={{color: 'red'}}></i>
+                  <td>{order.isPaid ? order.paidAt.substring(0, 10) : (
+                    <i className="fas fa-times" style={{ color: 'red' }}></i>
                   )}</td>
-                  <td>{order.isDelivered ? order.deliveredAt.substring(0,10) : (
-                    <i className="fas fa-times" style={{color: 'red'}}></i>
+                  <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : (
+                    <i className="fas fa-times" style={{ color: 'red' }}></i>
                   )}</td>
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
@@ -161,7 +161,7 @@ function ProfileScreen({ history }) {
               ))}
             </tbody>
           </Table>
-        )}
+        }
       </Col>
     </Row>
   );
