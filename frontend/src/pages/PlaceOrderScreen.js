@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Row, Col, Card, Image, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { createOrder } from '../actions/orderActions';
 import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 
-function PlaceOrderScreen({ history }) {
+function PlaceOrderScreen() {
     const orderCreate = useSelector(state => state.orderCreate)
     const { order, error, success } = orderCreate
 

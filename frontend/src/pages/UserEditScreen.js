@@ -8,7 +8,7 @@ import FormContainer from "../components/FormContainer";
 import { getUserDetails, updateUser } from "../actions/userActions";
 import { USER_UPDATE_RESET } from '../constants/userConstants';
 
-function UserEditScreen({ history }) {
+function UserEditScreen() {
     const { id } = useParams();
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
@@ -77,7 +77,7 @@ function UserEditScreen({ history }) {
                         </Form.Group>
 
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <Button type='submit' variant='primary'>Update User</Button>
+                            <Button type='submit' variant='primary'>Update</Button>
                         </div>
                     </Form>
                 )}

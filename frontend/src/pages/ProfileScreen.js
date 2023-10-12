@@ -7,9 +7,9 @@ import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
-import { ListOrdersByMe } from '../actions/orderActions';
+import { listOrdersByMe } from '../actions/orderActions';
 
-function ProfileScreen({ history }) {
+function ProfileScreen() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +38,7 @@ function ProfileScreen({ history }) {
       if (!user || !user.name || success || userInfo._id !== user._id) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
-        dispatch(ListOrdersByMe());
+        dispatch(listOrdersByMe());
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -128,7 +128,7 @@ function ProfileScreen({ history }) {
         ) : errorOrders ? (
           <ErrorMessage varient='danger'>{errorOrders}</ErrorMessage>
         ) : (orders.length === 0) ? <ErrorMessage varient="danger">You have not ordered anything</ErrorMessage> :
-          <Table striped responsive className="table-sm" style={centeredH1Styles}>
+          <Table striped bordered responsive className="table-sm" style={centeredH1Styles}>
             <thead>
               <tr>
                 <th>ID</th>
@@ -136,7 +136,7 @@ function ProfileScreen({ history }) {
                 <th>Total</th>
                 <th>Paid</th>
                 <th>Delivered</th>
-                <th></th>
+                <th><i className="fas fa-arrows"></i></th>
               </tr>
             </thead>
 

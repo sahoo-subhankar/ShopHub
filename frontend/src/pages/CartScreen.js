@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,7 +14,7 @@ import {
 import ErrorMessage from "../components/ErrorMessage";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 
-function CartScreen({ history }) {
+function CartScreen() {
   const { id } = useParams();
   const location = useLocation();
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
@@ -126,4 +126,5 @@ function CartScreen({ history }) {
     </>
   );
 }
+
 export default CartScreen;

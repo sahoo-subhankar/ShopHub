@@ -7,7 +7,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import FormContainer from "../components/FormContainer";
 import { login } from '../actions/userActions';
 
-function LoginScreen({ history }) {
+function LoginScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -63,4 +63,5 @@ function LoginScreen({ history }) {
         </FormContainer>
     )
 }
+
 export default LoginScreen;
