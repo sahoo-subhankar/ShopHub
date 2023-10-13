@@ -16,7 +16,7 @@ function ProductListScreen() {
     const { loading, error, products, page, pages } = productList
 
     const productDelete = useSelector((state) => state.productDelete)
-    const { error: errorDelete, success: successDelete } = productDelete
+    const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete
 
     const productCreate = useSelector((state) => state.productCreate)
     const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productCreate
@@ -71,6 +71,8 @@ function ProductListScreen() {
 
             {loadingCreate && <Loader />}
             {errorCreate && <ErrorMessage variant="danger">{errorCreate}</ErrorMessage>}
+            
+            {loadingDelete && <Loader />}
             {errorDelete && <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>}
 
             {loading ? (

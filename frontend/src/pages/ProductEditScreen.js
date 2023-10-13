@@ -13,7 +13,7 @@ function ProductEditScreen() {
     const { id } = useParams();
 
     const [name, setName] = useState('')
-    const [image, setImage] = useState('')
+    const [uploadedImage, setUploadedImage] = useState('')
     const [brand, setBrand] = useState('')
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
@@ -35,12 +35,12 @@ function ProductEditScreen() {
             dispatch({ type: PRODUCT_UPDATE_RESET })
             navigate('/admin/productlist')
         } else {
-            if (!product.name || product._id !== Number(id)) {
+            if (!product || product._id !== Number(id)) {
                 dispatch(listProductDetails(id))
             }
             else {
                 setName(product.name)
-                setImage(product.image)
+                setUploadedImage(product.image)
                 setBrand(product.brand)
                 setCategory(product.category)
                 setDescription(product.description)
@@ -52,8 +52,8 @@ function ProductEditScreen() {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(updateProduct({ _id: id, name, image, brand, category, description, price, countInStock }))
-    };
+        dispatch(updateProduct({ _id: id, name, price, image: uploadedImage, brand, category, countInStock, description }))
+    }
 
     const imageUploadHandler = async (e) => {
         const file = e.target.files[0];
@@ -68,17 +68,16 @@ function ProductEditScreen() {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            };
+            }
 
             const { data } = await axios.post('/api/products/upload/', formData, config);
 
-            setImage(data);
+            setUploadedImage(data);
             setUploading(false);
         } catch (error) {
             setUploading(false);
         }
     }
-
 
     const centeredH1Styles = {
         textAlign: 'center',
@@ -136,23 +135,16 @@ function ProductEditScreen() {
 
                         <Form.Group controlId='image'>
                             <Form.Label>Image:</Form.Label>
-                            <Form.Control type='text' placeholder='Enter Image' value={image} onChange={(e) => setImage(e.target.value)}>
-                            </Form.Control>
-                            <Form.File id='image-file' label='Choose File' custom onChange={imageUploadHandler}>
-                            </Form.File>
+                            <Form.Control
+                                type='text'
+                                placeholder='Enter Image'
+                                value={uploadedImage}
+                                onChange={(e) => setUploadedImage(e.target.value)}
+                            />
+                            <Form.Control type="file" id='image-file' label='Choose File' custom onChange={imageUploadHandler}></Form.Control>
+
                             {uploading && <Loader />}
                         </Form.Group>
-
-                        {/* <Form.Group controlId="image">
-                            <Form.Label>Image:</Form.Label>
-                            <Form.File
-                                id="image-file"
-                                label="Choose File"
-                                custom
-                                onChange={imageUploadHandler}/>
-                            {uploading && <Loader />}
-                        </Form.Group> */}
-
 
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <Button type='submit' variant='primary'>Update</Button>
