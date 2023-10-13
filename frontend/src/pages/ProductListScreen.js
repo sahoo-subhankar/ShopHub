@@ -71,7 +71,7 @@ function ProductListScreen() {
 
             {loadingCreate && <Loader />}
             {errorCreate && <ErrorMessage variant="danger">{errorCreate}</ErrorMessage>}
-            
+
             {loadingDelete && <Loader />}
             {errorDelete && <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>}
 

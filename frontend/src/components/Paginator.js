@@ -8,21 +8,21 @@ function Paginator({ pages, page, keyword = '', isAdmin = false }) {
     }
 
     return (pages > 1 && (
-            <Pagination>
-                {[...Array(pages).keys()].map((x) => (
-                    <LinkContainer
-                        key={x + 1}
-                        to={{
-                            pathname: !isAdmin ? '/' : '/admin/productlist',
-                            search: `?keyword=${keyword}&page=${x + 1}`,
-                        }}>
-                        <Pagination.Item disabled={x + 1 === page} >
-                            {x + 1}
-                        </Pagination.Item>
-                    </LinkContainer>
-                ))}
-            </Pagination>
-        )
+        <Pagination>
+            {[...Array(pages).keys()].map((x) => (
+                <LinkContainer
+                    key={x + 1}
+                    to={{
+                        pathname: !isAdmin ? '/' : '/admin/productlist',
+                        search: `?keyword=${keyword}&page=${x + 1}`,
+                    }}>
+                    <Pagination.Item disabled={x + 1 === page} >
+                        {x + 1}
+                    </Pagination.Item>
+                </LinkContainer>
+            ))}
+        </Pagination>
+    )
     )
 }
 

@@ -28,7 +28,7 @@ const HomeScreen = () => {
 
   return (
     <div>
-      {!keyword && <ProductSlider/>}
+      {!keyword && <ProductSlider />}
       <h1 style={centeredH1Styles}>Latest Products</h1>
       {loading ? (
         <Loader />

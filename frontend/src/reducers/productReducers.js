@@ -110,7 +110,7 @@ export const productReviewReducer = (state = {}, action) => {
     case PRODUCT_REVIEW_FAIL:
       return { loading: false, error: action.payload };
     case PRODUCT_REVIEW_RESET:
-      return { };
+      return {};
     default:
       return state;
   }

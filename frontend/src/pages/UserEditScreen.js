@@ -55,7 +55,7 @@ function UserEditScreen() {
 
             <FormContainer>
                 <h1 style={centeredH1Styles}>Edit User</h1>
-                {loadingUpdate && <Loader/>}
+                {loadingUpdate && <Loader />}
                 {errorUpdate && <ErrorMessage varient='danger'>{errorUpdate}</ErrorMessage>}
                 {loading ? <Loader /> : error ? <ErrorMessage varient='danger'>{error}</ErrorMessage> : (
                     <Form onSubmit={submitHandler}>
