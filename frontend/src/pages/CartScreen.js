@@ -41,7 +41,7 @@ function CartScreen() {
     <>
       <Row>
         <Col>
-          <Link to="/" className="btn btn-light my-5">
+          <Link to="/" className="btn btn-light ms-2 my-5">
             Go Back
           </Link>
         </Col>
@@ -66,8 +66,8 @@ function CartScreen() {
                       <Col md={3} sm={4} className="d-flex align-items-center">
                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                       </Col>
-                      <Col md={3} sm={2}>${item.price}</Col>
-                      <Col md={3} sm={2}>
+                      <Col md={3} sm={2} className="d-flex align-items-center">${item.price}</Col>
+                      <Col md={3} sm={2} className="d-flex align-items-center">
                         <Form.Select
                           value={item.qty}
                           onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
@@ -78,10 +78,11 @@ function CartScreen() {
                           ))}
                         </Form.Select>
                       </Col>
-                      <Col md={1} sm={2}>
+                      <Col md={1} sm={2} className="d-flex align-items-center">
                         <Button
                           type="button"
                           variant="light"
+                          className="btn-sm"
                           onClick={() => removeFromCartHandler(item.product)}>
                           <i className="fas fa-trash"></i>
                         </Button>

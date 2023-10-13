@@ -70,13 +70,13 @@ function ProductListScreen() {
             </Row>
 
             {loadingCreate && <Loader />}
-            {errorCreate && <ErrorMessage varient="danger">{errorCreate}</ErrorMessage>}
-            {errorDelete && <ErrorMessage varient="danger">{errorDelete}</ErrorMessage>}
+            {errorCreate && <ErrorMessage variant="danger">{errorCreate}</ErrorMessage>}
+            {errorDelete && <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>}
 
             {loading ? (
                 <Loader />
             ) : error ? (
-                <ErrorMessage varient="danger">{error}</ErrorMessage>
+                <ErrorMessage variant="danger">{error}</ErrorMessage>
             ) : (
                 <div>
                     <Table striped bordered responsive className="table-sm" style={centeredH1Styles}>

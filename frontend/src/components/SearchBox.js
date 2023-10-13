@@ -24,8 +24,8 @@ function SearchBox() {
                     onChange={(e) => setKeyword(e.target.value)}
                     className='me-1 mt-3 mb-3'></Form.Control>
 
-                <Button type='submit' variant='outline-success' className='p-2 me-3 mt-3 mb-3'>
-                    Submit
+                <Button type='submit' variant='outline-success' className='p-2 mt-3 mb-3'>
+                    Search
                 </Button>
             </InputGroup>
         </Form>

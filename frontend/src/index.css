@@ -1,3 +1,7 @@
+body {
+    background: linear-gradient(15deg, #880088, #aa2068, #cc3f47, #de6f3d, #f09f33, #de6f3d, #cc3f47, #aa2068, #880088) no-repeat;
+}
+
 main {
     min-height: 80vh;
 }
@@ -55,4 +59,19 @@ h3 {
     .carousel-caption h2 {
         font-size: 2.5vw;
     }
+}
+
+.custom-header {
+    background-color: dark;
+}
+
+.custom-footer {
+    background-color: dark;
+    height: 100px;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
 }

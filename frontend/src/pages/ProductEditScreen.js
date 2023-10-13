@@ -56,28 +56,29 @@ function ProductEditScreen() {
     };
 
     const imageUploadHandler = async (e) => {
-        const file = e.target.files[0]
-        const formData = new FormData()
+        const file = e.target.files[0];
+        const formData = new FormData();
 
-        formData.append('image', file)
-        formData.append('product_id', id)
-        setUploading(true)
+        formData.append('image', file);
+        formData.append('product_id', id);
+        setUploading(true);
 
-        try{
+        try {
             const config = {
                 headers: {
-                    'Content-type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data'
                 }
-            }
+            };
 
-            const {data} = await axios.post('/api/products/upload/', formData, config)
+            const { data } = await axios.post('/api/products/upload/', formData, config);
 
-            setImage(data)
-            setUploading(false)
-        }catch(error){
-            setUploading(false)
+            setImage(data);
+            setUploading(false);
+        } catch (error) {
+            setUploading(false);
         }
     }
+
 
     const centeredH1Styles = {
         textAlign: 'center',
@@ -93,9 +94,9 @@ function ProductEditScreen() {
                 <h1 style={centeredH1Styles}>Edit Product</h1>
 
                 {loadingUpdate && <Loader />}
-                {errorUpdate && <ErrorMessage varient='danger'>{errorUpdate}</ErrorMessage>}
+                {errorUpdate && <ErrorMessage variant='danger'>{errorUpdate}</ErrorMessage>}
 
-                {loading ? <Loader /> : error ? <ErrorMessage varient='danger'>{error}</ErrorMessage> : (
+                {loading ? <Loader /> : error ? <ErrorMessage variant='danger'>{error}</ErrorMessage> : (
                     <Form onSubmit={submitHandler}>
                         <Form.Group controlId='name'>
                             <Form.Label>Name:</Form.Label>
@@ -135,15 +136,23 @@ function ProductEditScreen() {
 
                         <Form.Group controlId='image'>
                             <Form.Label>Image:</Form.Label>
-
                             <Form.Control type='text' placeholder='Enter Image' value={image} onChange={(e) => setImage(e.target.value)}>
                             </Form.Control>
-
                             <Form.File id='image-file' label='Choose File' custom onChange={imageUploadHandler}>
                             </Form.File>
-
                             {uploading && <Loader />}
                         </Form.Group>
+
+                        {/* <Form.Group controlId="image">
+                            <Form.Label>Image:</Form.Label>
+                            <Form.File
+                                id="image-file"
+                                label="Choose File"
+                                custom
+                                onChange={imageUploadHandler}/>
+                            {uploading && <Loader />}
+                        </Form.Group> */}
+
 
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <Button type='submit' variant='primary'>Update</Button>
