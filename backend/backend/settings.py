@@ -3,7 +3,7 @@ from datetime import timedelta
 from pathlib import Path
 from decouple import config
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'. 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -24,12 +24,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # Extra Additions
     'corsheaders',
     'rest_framework',
     'debug_toolbar',
-    
+    'drf_spectacular',
+
     # My apps
     'myapp.apps.MyappConfig',
 ]
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 
@@ -82,13 +84,13 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 
 DATABASES = {
-    'default': {   
-        'ENGINE': 'django.db.backends.mysql',   
-        'NAME': config('DB_NAME'),   
-        'USER': config('DB_USER'),   
-        'PASSWORD': config('DB_PASSWORD'),   
-        'HOST': config('DB_HOST'),   
-        'PORT': config('DB_PORT'),  
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -132,7 +134,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
-MEDIA_ROOT = 'static/images' 
+MEDIA_ROOT = 'static/images'
 
 # Default primary key field type
 
@@ -143,3 +145,10 @@ INTERNAL_IPS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'ShopHub API',
+    'DESCRIPTION': 'Comprehensive and innovative online marketplace',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
